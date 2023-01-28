@@ -1,0 +1,25 @@
+{
+  "name": "store-api",
+  "version": "1.0.0",
+  "description": "practice on node.js and mongoose and express",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofian-elgharbaoui/store-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sofian-elgharbaoui/store-API/issues"
+  },
+  "homepage": "https://github.com/sofian-elgharbaoui/store-API",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.0"
+  }
+}
