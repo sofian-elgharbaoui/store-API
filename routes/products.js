@@ -1,15 +1,9 @@
-const Product = require("./models/products");
+const express = require("express");
+const router = express.Router();
+const createProduct = require("../admin_panel/createProduct");
+const { getAllProducts, getProduct } = require("../controllers/products");
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-  //   res.sendFile(path.resolve(__dirname, "./public/index.html"));
-});
+router.route("/").get(getAllProducts).post(createProduct);
+router.route("/:id").get(getProduct);
 
-app.get("/products", async (req, res) => {
-  try {
-    let products = await Product.find({});
-    res.json(products);
-  } catch (error) {
-    console.log(error);
-  }
-});
+module.exports = router;
