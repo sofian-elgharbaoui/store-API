@@ -1,6 +1,11 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const productSchema = new mongoose.Schema({
+const ImageSchema = new Schema({
+  data: Buffer,
+  contentType: String,
+});
+
+const ProductSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -11,18 +16,15 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
 
-  price: {
-    type: Number,
-    required: true,
-  },
-
-  image: {
-    type: String,
-    required: true,
-  },
+  images: [ImageSchema],
 
   category: {
     type: String,
+    required: true,
+  },
+
+  price: {
+    type: Number,
     required: true,
   },
 
@@ -31,10 +33,16 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
 
+  rating: {
+    type: String,
+    required: true,
+    default: "4.0",
+  },
+
   createdAt: {
     type: Date,
     default: Date.now(),
   },
 });
 
-module.exports = mongoose.model("product", productSchema);
+module.exports = model("Product", ProductSchema);

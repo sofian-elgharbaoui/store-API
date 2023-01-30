@@ -4,12 +4,16 @@ const app = express();
 const connetToDB = require("./db/connect");
 require("dotenv").config();
 
+require("express-async-errors");
+
 // Bring Routes
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
 
-// error handler
-const errorHandler = require("./middlewares/errors_handler");
+// errors handler
+const errorsHandler = require("./middlewares/errors_handler");
+//not found pages
+const notFoundPages = require("./middlewares/not_found");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,12 +26,10 @@ app.use("/api/v1/products", productsRouter);
 app.use("/users", usersRouter);
 
 // unexisted pages - 404
-app.use((req, res, next) => {
-  res.send("rewrite the url");
-});
+app.use(notFoundPages);
 
 // errors handler
-app.use(errorHandler);
+app.use(errorsHandler);
 
 (async () => {
   try {
