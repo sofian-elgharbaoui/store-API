@@ -8,34 +8,33 @@ const ImageSchema = new Schema({
 const ProductSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "you must include the product's name"],
   },
 
   description: {
     type: String,
-    required: true,
+    required: [true, "you must include the product's description"],
   },
 
   images: [ImageSchema],
 
   category: {
     type: String,
-    required: true,
+    required: [true, "you must include the product's category"],
   },
 
   price: {
     type: Number,
-    required: true,
+    required: [true, "you must include the product's price"],
   },
 
   quantity: {
     type: Number,
-    required: true,
+    required: [true, "you must include the quantity of products in the stock"],
   },
 
   rating: {
     type: String,
-    required: true,
     default: "4.0",
   },
 
@@ -43,6 +42,15 @@ const ProductSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  // // if I want to pass a value that matches one of the specefied values: enum: {values:[], message:"",}
+
+  // company: {
+  //   type: String,
+  //   enum: {
+  //     values: ["nike", "puma", "adidas"],
+  //     message: "This {VALUE} is not supported",
+  //   },
+  // },
 });
 
 module.exports = model("Product", ProductSchema);
